@@ -1,0 +1,55 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Create a post
+{% endblock %}
+
+
+{% block content %}
+<div class="container con1 ">
+    <div>
+      <div class="card ">
+        <div class="card-header">
+            New Post
+        </div>
+        <div class="card-body">
+        <form method="POST" >
+            <div class="form-group">
+                {{ form.title.label }}
+                {{ form.title( class="form-control" ) }}
+            </div>
+            <div class="form-group">
+                {{ form.content.label }}
+                {{ form.content( class="form-control  " ) }}
+            </div>
+            {{ form.submit( class="btn btn-primary btn-sm w-25") }}
+        </form>
+        </div>
+      </div>
+    </div>
+        <div class="card border-0 ">
+            <div class="card-header">
+                Create a post
+            </div>
+            <div class="card-body">
+                <div class="card" style="width: 18rem;">
+                  <img class="card-img-top" src="{{ url_for('static', filename='tweet.jpg')}}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Lorem</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                  <div class="card-body">
+                    <a href="#"  class=" text-muted card-link">Disabled</a>
+                    <a href="#" class=" text-muted card-link">Disabled</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

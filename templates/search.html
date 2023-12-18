@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    Search 
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container con1 ">
+<div>
+    <div class="">
+    {% for post in posts  %}
+    <div class="card">
+        <div class="card-body">
+          <h1 class="card-title font-weight-bold">
+          <img style="width: 40px; height: 40px; border-radius: 50%;" src="{{ url_for('static', filename='profile_pics/' + post.owner.image_file) }}"> <small  style="font-size: 15px;">
+            <a href="/poster/{{ post.id }}">
+              @{{ post.owner.username}}
+            </a>
+          </small>
+          <br>
+            <a href="/posts/{{ post.id }}"> 
+                {{ post.title }}
+            </a>
+          </h1>
+          <p class="card-text">{{ post.content }}</p>
+          <!-- <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a> -->
+          <p class="card-text text-muted">
+            Posted by {{ post.owner.username | title }} on {{ post.date.date() }}
+          </p>
+
+          {% if post.comments | length > 0 %} 
+          <a href="#comment{{post.id}}" class="btn btn-primary btn-sm mb-2" data-toggle="collapse">
+            <i class="fa-regular fa-comment"></i>
+          </a> <small class="text-danger">{{ post.comments | length }}</small>
+          {% else %}
+          <small class="text-muted mb-2">No comments</small>
+          {% endif %}
+
+          {% for comment in post.comments %}
+          <div id="comment{{post.id}}" class="collapse mb-2 mt-2">
+            <div class="d-flex justify-content-between">
+              <input type="text" value=" {{ comment.comment }}" class="form-control">
+              <!-- {% if comment.owner == current_user %}
+              <a href="/comment/{{ comment.id }}/delete">
+                <i class="fa-solid fa-remove" ></i>
+              </a>
+              {% endif %} -->
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <h1>Oops! No blogs matched your query <span style='font-size:85;'>&#128546;</span></h1>
+    {% endfor %}
+    </div>
+</div>
+
+    <div class="card border-0 ">
+        <div class="card-header">
+          SideBar
+        </div>
+        <div class="card-body">
+            
+           <form method="POST" action="{{ url_for('search')}}">
+
+                <div class="form-group d-flex">
+                    <input type="search" name="search" placeholder="Search posts" class="form-control">
+                    <button class="btn btn-info btn-ms">Search</button>
+                </div>
+
+            </form>
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="{{ url_for('static', filename='tweet.jpg')}}" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Lorem</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+              <div class="card-body">
+                <a href="#"  class=" text-muted card-link">Disabled</a>
+                <a href="#" class=" text-muted card-link">Disabled</a>
+              </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

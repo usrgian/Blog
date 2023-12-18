@@ -1,0 +1,90 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+  Profile
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container con1 ">
+    <div>
+      <div class="card ">
+        <div class="card-header">
+          Profile
+        </div>
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+            <img style="width:125px; height: 125px; border-radius: 50% " src="{{ url_for('static', filename='profile_pics/' + poster.owner.image_file) }}"> <small  style="font-size: 15px;">
+            
+            <div class="form-group">
+              <label >Username:</label>
+              <input  class="form-control" value="{{poster.owner.username}}">
+            </div>
+      
+            <div class="form-group">
+              <label >Email:</label>
+              <input  class="form-control" value="{{poster.owner.email}}" >
+            </div>
+            
+            <div class="form-group">
+              <label>Bio</label>
+              <input  class="form-control" value="{{ poster.owner.about_user }}" >
+            </div>
+      
+            <a hre="#" class="btn btn-sm btn-info">
+              Posts <strong>{{poster.owner.posts | length }}</strong>
+            </a>
+          </form>
+        </div>
+
+
+      </div>
+      
+      {% for post in poster.owner.posts  %}
+      <div class="card">
+        <div class="card-header">
+          @{{ post.owner.username }} <small class="text-muted">Posted on {{ post.date.date()}}</small>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ post.title }}
+          </h5>
+          <p class="card-text">
+            {{ post.content }}
+          </p>
+          {% if post.owner != current_user %}
+          <a href="/home" class="btn btn-primary btn-sm">Back</a>
+          {% else %}
+          <a href="/update/{{ post.id }}/post" class="btn btn-outline-success btn-sm">Edit</a>
+          <a href="/delete/{{ post.id }}/post" class="btn btn-outline-danger btn-sm">Delete</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+              
+    </div>
+        <div class="card border-0 ">
+            <div class="card-header">
+                Account
+            </div>
+            <div class="card-body">
+                <div class="card" style="width: 18rem;">
+                  <img class="card-img-top" src="{{ url_for('static', filename='tweet.jpg')}}" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">Lorem</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                  <div class="card-body">
+                    <a href="#"  class=" text-muted card-link">Disabled</a>
+                    <a href="#" class=" text-muted card-link">Disabled</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

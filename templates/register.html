@@ -1,0 +1,71 @@
+
+
+{% extends 'base.html' %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+
+{% block content %}
+
+<div class="row_1">
+    <div class="col_1">
+        <br> <br>
+        <div class="w-50 m-auto ">
+            <h3>Blog</h3>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit sit explicabo enim nihil. Amet eos voluptates quae vel facilis aliquam?</p>
+            <a href="" class="btn btn-sm btn-primary">Get started</a>
+        </div>
+    </div>
+    <div class="col_2">
+
+        <br><br>
+        <div class="card _1">
+            <div class="card-header bg-info text-white">
+                Register to Blog
+            </div>
+            <div class="card-body">
+                <form method="POST" >
+                    <div class="form-group">
+                        {{ form.username.label }}
+                        {{ form.username( class="form-control" )}}
+                    </div>
+                
+                    <div class="form-group">
+                        {{ form.email.label }}
+                        {{ form.email( class="form-control" )}}
+                    </div>
+                
+                    <div class="form-group">
+                        {{ form.password.label }}
+                        {{ form.password( class="form-control" )}}
+                    </div>
+                
+                    <div class="form-group">
+                        {{ form.confirm_password.label }}
+                        {{ form.confirm_password( class="form-control" )}}
+                    </div>
+        
+                    
+                    <div class="form-group">
+                        {{ form.about_me.label }}
+                        {{ form.about_me( class="form-control" )}}
+                    </div>
+                
+                    {{ form.submit( class="mb-2 btn btn-primary btn-sm w-25 " )}} <br/>
+
+                    <a href="/" class="font-weight-bold">Already have an account?</a>
+                
+                </form>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>
+
+
+{% endblock %}
+
+
